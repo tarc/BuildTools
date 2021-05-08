@@ -1,0 +1,27 @@
+name: Docker Image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  push_to_registry:
+    name: Build and push Docker image to GitHub packages
+    runs-on: windows-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      -
+        name: Check out
+        uses: actions/checkout@v2
+      -
+        name: Build and push
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: buildtools2019native
+          tag: latest
