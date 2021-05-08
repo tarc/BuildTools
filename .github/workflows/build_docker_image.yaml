@@ -24,4 +24,4 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
           image: buildtools2019native
-          tag: latest
+          tags: latest
